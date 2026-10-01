@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bright Nest Hostels | Sample hostel agent site</title>
+<meta name="description" content="Find your hostel near campus. Photos, prices, video tours and WhatsApp in one place.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bright Nest Hostels | Find your hostel near campus">
+<meta property="og:description" content="Photos, prices, video tours and WhatsApp in one place.">
+<!-- og:image must be a full https:// link to a 1200x630 image once the site is live -->
+<meta property="og:image" content="https://YOUR-DEMO-LINK/preview.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#000;--card:#0a0a0a;--ink:#f5f5f5;--mute:#eef3f1;--line:#1c2624;--forest:#2ef2c4;--coral:#ff5f3d;--wa:#25d366;--sand:#111a18;
+--head:"Bricolage Grotesque","Trebuchet MS",sans-serif;--body:"Nunito Sans","Segoe UI",Arial,sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.6}
+.wrap{max-width:64rem;margin:0 auto;padding:0 1.1rem}
+h1,h2,h3{font-family:var(--head);line-height:1.15}
+.banner{background:var(--forest);color:#fff;text-align:center;font-size:.85rem;padding:.55rem 1rem}
+header.hero{padding:2.6rem 0 2rem}
+.brand{font-family:var(--head);font-weight:700;color:var(--forest);font-size:1.05rem;margin-bottom:1rem}
+h1{font-size:clamp(2rem,7vw,3.3rem);max-width:15ch;margin-bottom:.8rem}
+.lead{color:var(--mute);max-width:34rem;margin-bottom:1.4rem;font-size:1.05rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:2.8rem;padding:.65rem 1.2rem;border-radius:.8rem;font-weight:700;text-decoration:none;font-size:.95rem;border:2px solid transparent}
+.btn.wa{background:var(--wa);color:#fff}
+.btn.line{border-color:var(--forest);color:var(--forest);background:transparent}
+.btn:focus-visible{outline:3px solid var(--coral);outline-offset:2px}
+h2{font-size:clamp(1.5rem,4.5vw,2rem);margin-bottom:1.2rem}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;margin-bottom:1rem}
+.head h2{margin-bottom:.2rem}
+.hint{color:var(--mute);font-size:.9rem}
+.arrows{display:flex;gap:.5rem;flex:none}
+.arrow{width:2.7rem;height:2.7rem;border-radius:50%;border:2px solid var(--forest);color:var(--forest);background:var(--card);display:grid;place-items:center;cursor:pointer}
+.arrow:disabled{opacity:.35;cursor:default}
+.arrow:focus-visible,.track:focus-visible{outline:3px solid var(--coral);outline-offset:2px}
+.arrow svg{width:1.3rem;height:1.3rem}
+.track{overscroll-behavior-x:contain;display:flex;gap:1.1rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin:0 -1.1rem;padding:.3rem 1.1rem 1rem;scroll-padding-left:1.1rem}
+.track::-webkit-scrollbar{height:6px}
+.track::-webkit-scrollbar-thumb{background:var(--forest);border-radius:6px}
+.track .card{flex:0 0 min(86%,22rem);scroll-snap-align:start;transform:translateZ(0);backface-visibility:hidden}
+.card{background:var(--card);border:1px solid var(--line);border-radius:1.1rem;overflow:hidden;display:flex;flex-direction:column}
+.card img{width:100%;height:auto;display:block;aspect-ratio:8/5;object-fit:cover}
+.body{padding:1.1rem;display:flex;flex-direction:column;gap:.7rem;flex:1}
+.top{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem;flex-wrap:wrap}
+h3{font-size:1.15rem}
+.price{font-family:var(--head);font-weight:700;color:var(--coral);font-size:1.15rem}
+.price span{font-family:var(--body);font-weight:600;font-size:.8rem;color:var(--mute)}
+.chips{list-style:none;padding:0;display:flex;gap:.45rem;flex-wrap:wrap}
+.chips li{background:var(--sand);border-radius:2rem;padding:.2rem .7rem;font-size:.82rem;color:var(--mute)}
+.card .thumb{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;transform:translateZ(0);backface-visibility:hidden}
+.card .thumb::before{content:"";position:absolute;inset:0;background:var(--thumb) center/cover}
+.card .thumb img{position:relative;width:100%;height:100%;aspect-ratio:auto;object-fit:contain}
+.card .thumb .play{position:absolute;left:50%;top:50%;width:3.4rem;height:3.4rem;margin:-1.7rem 0 0 -1.7rem;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;display:grid;place-items:center;transition:transform .2s,background .2s}
+.card .thumb .play svg{width:1.6rem;height:1.6rem;margin-left:.2rem}
+.card .thumb:hover .play,.card .thumb:focus-visible .play{transform:scale(1.08);background:#e11d48}
+.card p{color:var(--mute);font-size:.95rem;flex:1}
+.acts{display:flex;gap:.6rem;flex-wrap:wrap}
+.acts .btn{flex:1 1 auto;text-align:center;white-space:nowrap}
+section{padding:2.2rem 0}
+.contact{background:var(--card);border:1px solid var(--line);border-radius:1.2rem;padding:1.6rem;display:grid;gap:1.4rem;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr))}
+.contact dt{font-weight:700;font-size:.85rem;color:var(--forest);margin-bottom:.15rem}
+.contact dd{margin:0 0 .9rem;color:var(--ink)}
+footer{text-align:center;color:var(--mute);font-size:.85rem;padding:1.6rem 1rem 6rem}
+footer a{color:var(--forest);font-weight:700}
+.float{position:fixed;right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0px));z-index:5;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+
+/* Neon glow theme */
+:root{color-scheme:dark}
+body{background:#000}
+.banner{background:#000;color:var(--forest);border-bottom:1px solid var(--forest);box-shadow:0 0 18px rgba(46,242,196,.45);text-shadow:0 0 8px rgba(46,242,196,.7)}
+.brand{text-shadow:0 0 10px rgba(46,242,196,.8),0 0 24px rgba(46,242,196,.4)}
+h1{text-shadow:0 0 22px rgba(255,255,255,.18)}
+.btn.wa{box-shadow:0 0 12px rgba(37,211,102,.65),0 0 30px rgba(37,211,102,.3);transition:box-shadow .2s,transform .2s}
+.btn.wa:hover{box-shadow:0 0 18px rgba(37,211,102,.9),0 0 44px rgba(37,211,102,.5);transform:translateY(-1px)}
+.btn.line{box-shadow:0 0 10px rgba(46,242,196,.45),inset 0 0 10px rgba(46,242,196,.2);text-shadow:0 0 8px rgba(46,242,196,.7);transition:box-shadow .2s,background .2s}
+.btn.line:hover{background:rgba(46,242,196,.1);box-shadow:0 0 18px rgba(46,242,196,.8),inset 0 0 14px rgba(46,242,196,.3)}
+.arrow{background:#000;box-shadow:0 0 12px rgba(46,242,196,.55)}
+.card{border-color:rgba(46,242,196,.35);box-shadow:0 0 16px rgba(46,242,196,.18);transition:box-shadow .25s,border-color .25s}
+.card:hover{border-color:var(--forest);box-shadow:0 0 26px rgba(46,242,196,.4)}
+.price{text-shadow:0 0 10px rgba(255,95,61,.75),0 0 22px rgba(255,95,61,.35)}
+.chips li{border:1px solid rgba(46,242,196,.25);color:#fff}
+.card .thumb .play{box-shadow:0 0 16px rgba(255,255,255,.35)}
+.card .thumb:hover .play,.card .thumb:focus-visible .play{background:#ff2e63;box-shadow:0 0 22px rgba(255,46,99,.9)}
+.contact{border-color:rgba(46,242,196,.35);box-shadow:0 0 20px rgba(46,242,196,.15)}
+.contact dt{text-shadow:0 0 8px rgba(46,242,196,.6)}
+.track::-webkit-scrollbar-thumb{box-shadow:0 0 8px var(--forest)}
+.lead,.hint,.card p,.price span,.contact dd,footer{text-shadow:0 0 6px rgba(255,255,255,.25)}
+.card .thumb .avail{position:absolute;top:.7rem;left:.7rem;z-index:2;display:inline-flex;align-items:center;gap:.3rem;padding:.25rem .6rem .25rem .45rem;border-radius:2rem;background:rgba(0,0,0,.75);border:1px solid #25d366;color:#25d366;font-size:.78rem;font-weight:700;text-shadow:0 0 6px rgba(37,211,102,.8);box-shadow:0 0 12px rgba(37,211,102,.55)}
+.card .thumb .avail svg{width:.95rem;height:.95rem;filter:drop-shadow(0 0 4px rgba(37,211,102,.9))}
+.vm-clamp{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden}
+.vm-clamp.vm-open{display:block;-webkit-line-clamp:unset;line-clamp:unset;overflow:visible}
+.vm-btn{background:none;border:0;padding:.35rem 0;margin:0;font:inherit;font-weight:700;font-size:.92rem;color:var(--forest);text-decoration:underline;cursor:pointer;align-self:flex-start}
+.vm-btn[hidden]{display:none}
+.vm-btn.vm-inline{display:inline;padding:0;margin-left:.45rem;align-self:auto}
+.vm-btn:focus-visible{outline:3px solid var(--forest);outline-offset:2px}
+</style>
+<link rel="preload" as="image" href="img/sunrise-lodge.jpg"><link rel="preload" as="image" href="img/green-court.jpg"><link rel="preload" as="image" href="img/campus-view.jpg"><link rel="preload" as="image" href="img/palm-grove.jpg">
+</head>
+<body>
+<div class="banner">This is a sample site by Web-Vault. The buttons open a chat with Web-Vault.</div>
+
+<div class="wrap">
+<header class="hero">
+  <div class="brand">Bright Nest Hostels</div>
+  <h1>Find your hostel near campus</h1>
+  <p class="lead">See real prices, photos and video tours, then message us on WhatsApp to book a viewing.</p>
+  <a class="btn wa" href="https://wa.me/2347088278642?text=Hello%2C%20I%20want%20to%20find%20a%20hostel%20near%20campus." target="_blank" rel="noopener">Chat on WhatsApp</a>
+</header>
+
+<section id="hostels">
+  <div class="head">
+    <div>
+      <h2>Available hostels</h2>
+      <p class="hint">Swipe sideways or use the arrows to see all 4 hostels</p>
+    </div>
+    <div class="arrows">
+      <button type="button" class="arrow" id="prev" aria-label="Previous hostel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+      <button type="button" class="arrow" id="next" aria-label="Next hostel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+    </div>
+  </div>
+  <div class="track" id="track" role="region" aria-label="Available hostels" tabindex="0">
+    <article class="card">
+      <a class="thumb" href="https://youtube.com/shorts/kj19b7wYras?feature=shared" target="_blank" rel="noopener" aria-label="Watch the video of Sunrise Lodge" style="--thumb:url('img/sunrise-lodge-bg.jpg');background-color:#7a6b5b"><img src="img/sunrise-lodge.jpg" decoding="async" alt="Opening frame of the Sunrise Lodge video" width="540" height="960" loading="eager"><span class="avail"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Available</span><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span></a>
+      <div class="body">
+        <div class="top"><h3>Sunrise Lodge</h3><div class="price">₦120,000<span> / session</span></div></div>
+        <ul class="chips"><li>Self-contained single room</li><li>5 min walk to campus gate</li></ul>
+        <p>Quiet single rooms with a private bathroom, tiled floors, and 24-hour security.</p>
+        <div class="acts">
+          <!-- Replace with the agent's unlisted YouTube video link -->
+          <a class="btn line" href="https://youtube.com/shorts/kj19b7wYras?feature=shared" target="_blank" rel="noopener">Watch video</a>
+          <a class="btn wa" href="https://wa.me/2347088278642?text=Hello%2C%20I%20am%20asking%20about%20Sunrise%20Lodge%20from%20the%20sample%20site." target="_blank" rel="noopener">Ask on WhatsApp</a>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <a class="thumb" href="https://youtube.com/shorts/yTit4Vsp9mA?si=yRq9V0db-cQ-IRR9" target="_blank" rel="noopener" aria-label="Watch the video of Green Court Hostel" style="--thumb:url('img/green-court-bg.jpg');background-color:#656669"><img src="img/green-court.jpg" decoding="async" alt="Opening frame of the Green Court Hostel video" width="540" height="960" loading="eager"><span class="avail"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Available</span><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span></a>
+      <div class="body">
+        <div class="top"><h3>Green Court Hostel</h3><div class="price">₦85,000<span> / session</span></div></div>
+        <ul class="chips"><li>Shared room, 2 per room</li><li>8 min walk to campus</li></ul>
+        <p>Bright shared rooms with reading tables, a common kitchen, and steady water supply.</p>
+        <div class="acts">
+          <!-- Replace with the agent's unlisted YouTube video link -->
+          <a class="btn line" href="https://youtube.com/shorts/yTit4Vsp9mA?si=yRq9V0db-cQ-IRR9" target="_blank" rel="noopener">Watch video</a>
+          <a class="btn wa" href="https://wa.me/2347088278642?text=Hello%2C%20I%20am%20asking%20about%20Green%20Court%20Hostel%20from%20the%20sample%20site." target="_blank" rel="noopener">Ask on WhatsApp</a>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <a class="thumb" href="https://youtube.com/shorts/Y3Eb1t9xYk0?si=6hAA-gNWw2py-A9Z" target="_blank" rel="noopener" aria-label="Watch the video of Campus View Apartments" style="--thumb:url('img/campus-view-bg.jpg');background-color:#706961"><img src="img/campus-view.jpg" decoding="async" alt="Opening frame of the Campus View Apartments video" width="540" height="960" loading="eager"><span class="avail"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Available</span><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span></a>
+      <div class="body">
+        <div class="top"><h3>Campus View Apartments</h3><div class="price">₦150,000<span> / session</span></div></div>
+        <ul class="chips"><li>Self-contained with prepaid meter</li><li>3 min walk to campus gate</li></ul>
+        <p>Modern self-contained rooms with your own prepaid meter, wardrobe, and a fenced compound.</p>
+        <div class="acts">
+          <!-- Replace with the agent's unlisted YouTube video link -->
+          <a class="btn line" href="https://youtube.com/shorts/Y3Eb1t9xYk0?si=6hAA-gNWw2py-A9Z" target="_blank" rel="noopener">Watch video</a>
+          <a class="btn wa" href="https://wa.me/2347088278642?text=Hello%2C%20I%20am%20asking%20about%20Campus%20View%20Apartments%20from%20the%20sample%20site." target="_blank" rel="noopener">Ask on WhatsApp</a>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <a class="thumb" href="https://youtube.com/shorts/BnE1pg2ts0c?si=n52dtQZHLrdLUbyd" target="_blank" rel="noopener" aria-label="Watch the video of Palm Grove Hostel" style="--thumb:url('img/palm-grove-bg.jpg');background-color:#53423e"><img src="img/palm-grove.jpg" decoding="async" alt="Opening frame of the Palm Grove Hostel video" width="540" height="960" loading="eager"><span class="avail"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Available</span><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span></a>
+      <div class="body">
+        <div class="top"><h3>Palm Grove Hostel</h3><div class="price">₦60,000<span> / session</span></div></div>
+        <ul class="chips"><li>Shared room, 4 per room</li><li>12 min walk to campus</li></ul>
+        <p>The budget pick: clean rooms, borehole water, and a quiet reading area, close to the market.</p>
+        <div class="acts">
+          <!-- Replace with the agent's unlisted YouTube video link -->
+          <a class="btn line" href="https://youtube.com/shorts/BnE1pg2ts0c?si=n52dtQZHLrdLUbyd" target="_blank" rel="noopener">Watch video</a>
+          <a class="btn wa" href="https://wa.me/2347088278642?text=Hello%2C%20I%20am%20asking%20about%20Palm%20Grove%20Hostel%20from%20the%20sample%20site." target="_blank" rel="noopener">Ask on WhatsApp</a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact us</h2>
+  <div class="contact">
+    <dl>
+      <dt>WhatsApp</dt><dd>0708 827 8642</dd>
+      <dt>Phone</dt><dd>0708 827 8642</dd>
+    </dl>
+    <dl>
+      <dt>Address</dt><dd>Sample address, near the campus main gate</dd>
+      <dt>Opening hours</dt><dd>Monday to Saturday, 8am to 6pm</dd>
+    </dl>
+    <div><a class="btn wa" href="https://wa.me/2347088278642?text=Hello%2C%20I%20would%20like%20to%20book%20a%20hostel%20viewing." target="_blank" rel="noopener">Book a viewing</a></div>
+  </div>
+</section>
+</div>
+
+<footer>
+  Sample site by <!-- Replace # with your Web-Vault link once it is live --><a href="../index.html">Web-Vault</a>. Hostel names, prices and photos are examples.
+</footer>
+
+<a class="btn wa float" href="https://wa.me/2347088278642?text=Hello%2C%20I%20want%20to%20find%20a%20hostel%20near%20campus." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">WhatsApp us</a>
+<script>
+(function(){
+  var tr=document.getElementById('track'),pv=document.getElementById('prev'),nx=document.getElementById('next');
+  function step(){var c=tr.querySelector('.card');return c.offsetWidth+(parseFloat(getComputedStyle(tr).columnGap)||16);}
+  function upd(){pv.disabled=tr.scrollLeft<4;nx.disabled=tr.scrollLeft+tr.clientWidth>=tr.scrollWidth-4;}
+  pv.addEventListener('click',function(){tr.scrollBy({left:-step(),behavior:'smooth'});});
+  nx.addEventListener('click',function(){tr.scrollBy({left:step(),behavior:'smooth'});});
+  tr.addEventListener('scroll',upd,{passive:true});
+  window.addEventListener('resize',upd);
+  upd();
+})();
+</script>
+<script>
+(function(){
+  var SKIP=function(p){return p.closest('.plan-card,footer,nav,.banner')||p.id==='plan-status'||p.classList.contains('start-pill')||p.classList.contains('hint');};
+  var items=[];
+  function collapse(it){
+    it.p.classList.remove('vm-open'); it.b.classList.remove('vm-inline');
+    it.p.parentNode.insertBefore(it.b,it.p.nextSibling);
+    it.b.textContent='View more'; it.b.setAttribute('aria-expanded','false');
+  }
+  function expand(it){
+    it.p.classList.add('vm-open'); it.p.appendChild(it.b); it.b.classList.add('vm-inline');
+    it.p.style.marginBottom=it.mb; it.b.style.marginBottom='0';
+    it.b.textContent='View less'; it.b.setAttribute('aria-expanded','true');
+  }
+  function setup(){
+    var ps=document.querySelectorAll('p');
+    for(var i=0;i<ps.length;i++){
+      var p=ps[i]; if(SKIP(p)||p.getAttribute('data-vm')) continue;
+      p.setAttribute('data-vm','1');
+      var b=document.createElement('button');
+      b.type='button'; b.className='vm-btn'; b.textContent='View more'; b.hidden=true; b.setAttribute('aria-expanded','false');
+      p.parentNode.insertBefore(b,p.nextSibling);
+      var it={p:p,b:b,mb:getComputedStyle(p).marginBottom};
+      (function(it){
+        it.b.addEventListener('click',function(){
+          if(it.p.classList.contains('vm-open')){collapse(it);measure();}else{expand(it);}
+        });
+      })(it);
+      items.push(it);
+    }
+  }
+  function measure(){
+    for(var i=0;i<items.length;i++){
+      var it=items[i];
+      if(it.p.classList.contains('vm-open')) continue;
+      it.p.style.marginBottom=it.mb;
+      it.p.classList.add('vm-clamp');
+      var over=it.p.scrollHeight>it.p.clientHeight+1;
+      it.b.hidden=!over;
+      if(over){it.p.style.marginBottom='0';it.b.style.marginBottom=it.mb;}else{it.b.style.marginBottom='0';}
+    }
+  }
+  var t;
+  setup(); measure();
+  window.addEventListener('load',measure);
+  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(measure);}
+  window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(measure,150);});
+})();
+</script>
+</body>
+</html>
